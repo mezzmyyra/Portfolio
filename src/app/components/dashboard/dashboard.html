@@ -1,0 +1,94 @@
+<div class="max-w-4xl mx-auto p-6 bg-slate-900 text-slate-100 rounded-2xl border border-slate-800 shadow-xl space-y-8">
+  
+  <!-- EN-TÊTE DU DASHBOARD -->
+  <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-slate-800">
+    <div>
+      <span class="text-xs font-semibold px-2.5 py-1 rounded bg-indigo-950 text-indigo-300 border border-indigo-800/50">
+        Démo Interactive - Angular
+      </span>
+      <h2 class="text-2xl font-bold text-white mt-2">Tableau de Bord & Gestion de Tâches</h2>
+      <p class="text-slate-400 text-sm">Interface de suivi de projet en temps réel.</p>
+    </div>
+    
+    <!-- STATS RAPIDES -->
+    <div class="flex gap-4">
+      <div class="bg-slate-800/60 border border-slate-700/50 px-4 py-2 rounded-xl text-center">
+        <span class="block text-xs text-slate-400">Total Tâches</span>
+        <span class="text-lg font-bold text-white">{{ totalTasks }}</span>
+      </div>
+      <div class="bg-slate-800/60 border border-slate-700/50 px-4 py-2 rounded-xl text-center">
+        <span class="block text-xs text-slate-400">Terminées</span>
+        <span class="text-lg font-bold text-emerald-400">{{ completedTasks }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- FORMULAIRE D'AJOUT -->
+  <div class="bg-slate-800/40 border border-slate-700/50 p-4 rounded-xl flex flex-col md:flex-row gap-3 items-center">
+    <input 
+      type="text" 
+      [(ngModel)]="newTaskTitle" 
+      placeholder="Ajouter une nouvelle tâche..." 
+      class="flex-1 bg-slate-900 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
+    />
+    
+    <select 
+      [(ngModel)]="newTaskPriority"
+      class="bg-slate-900 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500">
+      <option value="Basse">Priorité Basse</option>
+      <option value="Moyenne">Priorité Moyenne</option>
+      <option value="Haute">Priorité Haute</option>
+    </select>
+
+    <button 
+      (click)="addTask()"
+      class="w-full md:w-auto px-6 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-medium rounded-lg transition shadow-lg shadow-indigo-600/30">
+      Ajouter
+    </button>
+  </div>
+
+  <!-- LISTE DES TÂCHES -->
+  <div class="space-y-3">
+    <div *ngFor="let task of tasks" 
+         class="bg-slate-800/60 border border-slate-700/50 p-4 rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 hover:border-slate-600 transition">
+      
+      <div class="space-y-1">
+        <div class="flex items-center gap-2">
+          <span [ngClass]="{
+            'bg-red-950 text-red-300 border-red-800/50': task.priority === 'Haute',
+            'bg-amber-950 text-amber-300 border-amber-800/50': task.priority === 'Moyenne',
+            'bg-blue-950 text-blue-300 border-blue-800/50': task.priority === 'Basse'
+          }" class="text-[10px] font-semibold px-2 py-0.5 rounded border">
+            {{ task.priority }}
+          </span>
+          <span [ngClass]="{
+            'text-slate-400 line-through': task.status === 'done',
+            'text-white': task.status !== 'done'
+          }" class="font-medium text-sm">
+            {{ task.title }}
+          </span>
+        </div>
+      </div>
+
+      <!-- ACTIONS & STATUTS -->
+      <div class="flex items-center gap-3 w-full sm:w-auto justify-end">
+        <select 
+          [ngModel]="task.status" 
+          (ngModelChange)="updateStatus(task, $event)"
+          class="bg-slate-900 border border-slate-700 text-xs rounded-lg px-3 py-1.5 text-slate-300 focus:outline-none focus:border-indigo-500">
+          <option value="todo">À faire</option>
+          <option value="in-progress">En cours</option>
+          <option value="done">Terminé</option>
+        </select>
+
+        <button 
+          (click)="deleteTask(task.id)"
+          class="text-slate-500 hover:text-red-400 text-sm p-1.5 transition">
+          🗑️
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+</div>

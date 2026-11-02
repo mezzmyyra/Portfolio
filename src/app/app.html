@@ -1,0 +1,132 @@
+<div class="min-h-screen bg-slate-900 text-slate-100 font-sans selection:bg-indigo-500 selection:text-white">
+  
+  <!-- BARRE DE NAVIGATION -->
+  <nav class="sticky top-0 z-50 backdrop-blur-md bg-slate-900/80 border-b border-slate-800">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <span class="text-xl font-bold tracking-tight bg-gradient-to-r from-indigo-400 to-cyan-400 bg-clip-text text-transparent">
+        {{ developerName }}.dev
+      </span>
+      <div class="flex space-x-6 text-sm font-medium text-slate-300">
+        <a href="#about" class="hover:text-indigo-400 transition">À propos</a>
+        <a href="#skills" class="hover:text-indigo-400 transition">Compétences</a>
+        <a href="#projects" class="hover:text-indigo-400 transition">Projets</a>
+        <a href="#contact" class="hover:text-indigo-400 transition">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="max-w-6xl mx-auto px-6 py-12 space-y-24">
+    
+    <!-- HERO / ACCUEIL -->
+    <section id="about" class="pt-8 space-y-6">
+      <div class="inline-block px-3 py-1 text-xs font-semibold tracking-wider text-indigo-400 bg-indigo-950/60 rounded-full border border-indigo-800/50">
+        Disponible pour projets freelances
+      </div>
+      <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-white leading-tight">
+        Je développe des applications web <span class="bg-gradient-to-r from-indigo-400 via-sky-400 to-emerald-400 bg-clip-text text-transparent">modernes, fluides et performantes</span>.
+      </h1>
+      <p class="text-lg text-slate-400 max-w-2xl leading-relaxed">
+        Développeur spécialisé dans l'écosystème **Angular** et le Web moderne. Je conçois des interfaces intuitives, responsive et prêtes pour la production.
+      </p>
+      <div class="flex items-center space-x-4 pt-4">
+        <a href="#projects" class="px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-medium rounded-lg shadow-lg shadow-indigo-600/30 transition">
+          Voir mes réalisations
+        </a>
+        <a href="#contact" class="px-6 py-3 bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium rounded-lg border border-slate-700 transition">
+          Me contacter
+        </a>
+      </div>
+    </section>
+
+    <!-- SKILLS / COMPÉTENCES -->
+    <section id="skills" class="space-y-6">
+      <h2 class="text-2xl font-bold text-white flex items-center gap-2">
+        <span class="text-indigo-400">#</span> Compétences Techniques
+      </h2>
+      <div class="flex flex-wrap gap-3">
+        <span *ngFor="let skill of skills" 
+              class="px-4 py-2 bg-slate-800/80 border border-slate-700/60 rounded-lg text-slate-300 text-sm font-medium hover:border-indigo-500/50 hover:text-white transition">
+          {{ skill }}
+        </span>
+      </div>
+    </section>
+
+    <!-- PROJETS / PORTFOLIO -->
+    <section id="projects" class="space-y-8">
+      <div>
+        <h2 class="text-2xl font-bold text-white flex items-center gap-2">
+          <span class="text-indigo-400">#</span> Projets Phares
+        </h2>
+        <p class="text-slate-400 text-sm">Applications conçues pour répondre à des besoins métiers concrets.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div *ngFor="let project of projects" 
+             class="group bg-slate-800/40 border border-slate-700/50 rounded-xl p-6 flex flex-col justify-between hover:border-indigo-500/50 hover:bg-slate-800/70 transition">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold px-2.5 py-1 rounded bg-indigo-950 text-indigo-300 border border-indigo-800/50">
+                {{ project.badge }}
+              </span>
+            </div>
+            <h3 class="text-xl font-bold text-white group-hover:text-indigo-400 transition">
+              {{ project.title }}
+            </h3>
+            <p class="text-slate-400 text-sm leading-relaxed">
+              {{ project.description }}
+            </p>
+          </div>
+
+          <div class="space-y-4 pt-6 mt-6 border-t border-slate-700/40">
+            <div class="flex flex-wrap gap-2">
+              <span *ngFor="let tech of project.techStack" class="text-xs text-slate-400 bg-slate-900/60 px-2.5 py-1 rounded">
+                {{ tech }}
+              </span>
+            </div>
+            <div class="flex items-center space-x-4 pt-2">
+              <a [href]="project.liveUrl" target="_blank" class="text-sm font-medium text-indigo-400 hover:text-indigo-300 transition flex items-center gap-1">
+                Démo Live &rarr;
+              </a>
+              <a [href]="project.githubUrl" target="_blank" class="text-sm font-medium text-slate-400 hover:text-slate-200 transition">
+                Code Source (GitHub)
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="space-y-6">
+      <div>
+        <h2 class="text-2xl font-bold text-white flex items-center gap-2">
+          <span class="text-indigo-400">#</span> Démo Live en Direct
+        </h2>
+        <p class="text-slate-400 text-sm">Testez ci-dessous un exemple concret d'application construite avec Angular.</p>
+      </div>
+      <app-dashboard></app-dashboard>
+    </section>
+
+
+
+
+
+
+    <!-- CONTACT / FOOTER -->
+    <section id="contact" class="bg-slate-800/30 border border-slate-700/50 rounded-2xl p-8 text-center space-y-4">
+      <h2 class="text-2xl font-bold text-white">Un projet en tête ?</h2>
+      <p class="text-slate-400 max-w-lg mx-auto text-sm">
+        Je suis disponible pour des missions freelances en développement web. Discutons de votre besoin dès maintenant !
+      </p>
+      <div class="pt-2">
+        <a href="mailto:votre.email@example.com" class="inline-block px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-medium rounded-lg transition">
+          Envoyer un message
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-slate-800 text-center py-6 text-xs text-slate-500">
+    © {{ developerName }} - Tous droits réservés. Construit avec Angular & Tailwind CSS.
+  </footer>
+</div>
