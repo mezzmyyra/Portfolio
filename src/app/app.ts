@@ -19,8 +19,8 @@ interface Project {
   styleUrls: ['./app.css']
 })
 export class AppComponent {
-  developerName = 'Ton Prénom'; // Change ici avec ton vrai prénom
-  developerRole = 'Développeur Web Front-End & Angular';
+  developerName = 'MyyrA'; // Change ici avec ton vrai prénom
+  developerRole = 'Développeur Web Full-Stack (Angular for Front-end)';
   
   skills: string[] = [
     'Angular', 'TypeScript', 'JavaScript (ES6+)', 
